@@ -1,0 +1,29 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env/
+
+# Build / packaging
+build/
+dist/
+pip-wheel-metadata/
+*.egg-info/
+*.egg
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Python tooling
+.python-version
+
+# ignore all jpg/jpeg images anywhere in the project
+*.jpg
+*.jpeg
