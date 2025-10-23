@@ -1,0 +1,28 @@
+[project]
+name = "python_fun_projects"
+version = "0.0.0"
+description = "Mini projects in Python for fun"
+authors = [{ name = "Amir Kamali" }]
+requires-python = ">=3.14"
+dependencies = [
+    "pillow>=12.0.0",
+    "pytesseract>=0.3.13",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 88
+target-version = ["py314"]
+
+[tool.hatch.build.targets.wheel]
+# Explicitly tell Hatch which package(s) to include in the wheel.
+# Your importable package is the top-level "ocr" package (folder with __init__.py).
+packages = ["ocr"]
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+]
