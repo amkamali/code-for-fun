@@ -1,0 +1,8 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/python_fun_projects/.venv/bin/python",
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length", "88"],
+  "[python]": {
+    "editor.formatOnSave": true
+  }
+}

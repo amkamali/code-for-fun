@@ -24,6 +24,12 @@ pip-wheel-metadata/
 # Python tooling
 .python-version
 
+# ignore everything in .vscode, then allow specific files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
 # ignore all jpg/jpeg images anywhere in the project
 *.jpg
 *.jpeg

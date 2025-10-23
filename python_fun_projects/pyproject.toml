@@ -9,6 +9,20 @@ dependencies = [
     "pytesseract>=0.3.13",
 ]
 
-[build_syetem]
+[build-system]
 requires = ["hatchling"]
-build-backend = "hatchling.build" 
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.hatch.build.targets.wheel]
+# Explicitly tell Hatch which package(s) to include in the wheel.
+# Your importable package is the top-level "ocr" package (folder with __init__.py).
+packages = ["ocr"]
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+]
