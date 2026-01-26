@@ -2,7 +2,7 @@ import argparse
 from pathlib import Path
 from PIL import Image
 import pytesseract
-import re
+# import re
 import sys
 
 def main():
