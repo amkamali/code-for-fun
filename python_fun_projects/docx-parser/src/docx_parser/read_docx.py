@@ -1,18 +1,19 @@
 import argparse
 from docx import Document
-from pathlib import Path
 from docx.oxml import OxmlElement
 from docx.text.paragraph import Paragraph
+from pathlib import Path
+import sys
 
 
-def rewrite_profile_section(docx_path: str, new_texts: list[str], output_path: str):
+def rewrite_profile_section(docx_path: Path, new_texts: list[str], output_path: Path):
     """
     Replaces the paragraphs in profile section of a DOCX file,
     preserving the original formatting of those paragraphs.
     args:
-        docx_path (str): Path to the input DOCX file.
+        docx_path (Path): Path to the input DOCX file.
         new_texts (list[str]): A list of the new texts to replace the paragraphs between profile and core competencies.
-        output_path (str): Path to save the modified DOCX file.
+        output_path (Path): Path to save the modified DOCX file.
     returns:
         None
     """
@@ -88,40 +89,57 @@ def rewrite_profile_section(docx_path: str, new_texts: list[str], output_path: s
 
 def main():
     """
-    Command-line interface to replace paragraph after a specified heading in a DOCX file.
-    args:
-        None
-    returns:
+    Command-line interface to replace paragraphs in the Profile section of a DOCX file.
+    Other sections remain unchanged, for now. Modification of other sections of the text will be added later.
+    The modified document is saved to a new file.
+
+    CLI Arguments:
+        --docx_path: Path to the input DOCX file (default: ../sample_document.docx)
+        --new_text_path: Path to the text file containing new text (required)
+        --output_path: Path to save the modified DOCX file (default: ../new_sample_document.docx)
+
+    Returns:
         None
     """
     parser = argparse.ArgumentParser(
-        description="Replace paragraph after heading in a DOCX file."
+        description="Replace profile section in a DOCX file."
     )
     parser.add_argument(
-        "docx_path",
+        "--docx_path",
         type=Path,
         default="../sample_document.docx",
         help="Path to the input DOCX file",
     )
     parser.add_argument(
-        "new_text_path",
-        type=str,
+        "--new_text_path",
+        type=Path,
+        required=True,
         help="Path to the text file containing new text for profile section",
     )
     parser.add_argument(
-        "output_path",
+        "--output_path",
         type=Path,
         default="../new_sample_document.docx",
         help="Path to save the modified DOCX file",
     )
     args = parser.parse_args()
 
-    with open(args.new_text_path, "r") as f:
-        new_text = f.read().strip().split("\n")
+    try:
+        with open(args.new_text_path, "r") as f:
+            new_text = f.read().strip().split("\n")
 
-    rewrite_profile_section(
-        docx_path=args.docx_path, new_texts=new_text, output_path=args.output_path
-    )
+        rewrite_profile_section(
+            docx_path=args.docx_path, new_texts=new_text, output_path=args.output_path
+        )
+    except FileNotFoundError as e:
+        print(f"Error: File not found - {e.filename}", file=sys.stderr)
+        sys.exit(1)
+    except PermissionError as e:
+        print(f"Error: Permission denied - {e.filename}", file=sys.stderr)
+        sys.exit(1)
+    except OSError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
