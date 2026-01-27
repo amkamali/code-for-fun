@@ -3,4 +3,5 @@ repos:
     rev: 24.10.0
     hooks:
       - id: black
+        language_version: python3.14
         files: ^python_fun_projects/
