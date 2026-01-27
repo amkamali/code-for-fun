@@ -126,7 +126,7 @@ def main():
 
     try:
         with open(args.new_text_path, "r") as f:
-            new_text = f.read().strip().split("\n")
+            new_text = f.read().strip().splitlines()
 
         rewrite_profile_section(
             docx_path=args.docx_path, new_texts=new_text, output_path=args.output_path

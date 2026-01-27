@@ -20,7 +20,9 @@ target-version = ["py314"]
 [tool.hatch.build.targets.wheel]
 # Explicitly tell Hatch which package(s) to include in the wheel.
 # Your importable package is the top-level "ocr" package (folder with __init__.py).
-packages = ["src/ocr"]
+packages = [
+    { include = "ocr", from = "src" },
+]
 
 [dependency-groups]
 dev = [
