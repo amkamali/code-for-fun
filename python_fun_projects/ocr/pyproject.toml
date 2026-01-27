@@ -15,7 +15,7 @@ build-backend = "hatchling.build"
 
 [tool.black]
 line-length = 88
-target-version = ["py313"]
+target-version = ["py314"]
 
 [tool.hatch.build.targets.wheel]
 # Explicitly tell Hatch which package(s) to include in the wheel.
