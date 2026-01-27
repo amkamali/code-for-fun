@@ -1,7 +1,7 @@
 [project]
-name = "python_fun_projects"
+name = "ocr"
 version = "0.0.0"
-description = "Mini projects in Python for fun"
+description = "some basic ocr operations"
 authors = [{ name = "Amir Kamali" }]
 requires-python = ">=3.14"
 dependencies = [
@@ -20,7 +20,7 @@ target-version = ["py314"]
 [tool.hatch.build.targets.wheel]
 # Explicitly tell Hatch which package(s) to include in the wheel.
 # Your importable package is the top-level "ocr" package (folder with __init__.py).
-packages = ["ocr"]
+packages = ["src/ocr"]
 
 [dependency-groups]
 dev = [

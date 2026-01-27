@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # Virtual environments
-.venv/
+.*_venv/
 venv/
 env/
 .env/
@@ -30,6 +30,9 @@ pip-wheel-metadata/
 !.vscode/tasks.json
 !.vscode/extensions.json
 
-# ignore all jpg/jpeg images anywhere in the project
+# ignore all jpg/jpeg images, text files and doc/docx documents anywhere in the project
 *.jpg
 *.jpeg
+*.txt
+*.doc
+*.docx
