@@ -2,8 +2,11 @@ import argparse
 from pathlib import Path
 from PIL import Image
 import pytesseract
+
+# TODO: Commented and kept for use in a later PR.
 # import re
 import sys
+
 
 def main():
     """
@@ -14,13 +17,21 @@ def main():
     If no filename is provided, it defaults to 'sample_text_1.jpg'.
     """
     parser = argparse.ArgumentParser(description="Process an image file.")
-    parser.add_argument("filename", nargs="?", type=Path, default="sample_text_1.jpg", help="Path to the image file")
+    parser.add_argument(
+        "filename",
+        nargs="?",
+        type=Path,
+        default="sample_text_1.jpg",
+        help="Path to the image file",
+    )
     args = parser.parse_args()
 
     try:
         text = pytesseract.image_to_string(Image.open(args.filename))
     except (FileNotFoundError, OSError) as e:
-        print(f"Error: Unable to open image file '{args.filename}': {e}", file=sys.stderr)
+        print(
+            f"Error: Unable to open image file '{args.filename}': {e}", file=sys.stderr
+        )
         sys.exit(1)
 
     print("text:", text)
@@ -31,5 +42,5 @@ def main():
     # print("Email:", email.group(0) if email else "-")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
