@@ -125,7 +125,8 @@ def rewrite_profile_section(docx_path: Path, new_texts: list[str], output_path: 
             return
 
     print(
-        "Profile section not found. No changes made. Output file not created.",
+        """Profile section not found or incomplete. No changes made. Output file not created.
+Either a Heading 1 'Profile' does not exist, or no Heading 1 was found after it.""",
         file=sys.stderr,
     )
     return
