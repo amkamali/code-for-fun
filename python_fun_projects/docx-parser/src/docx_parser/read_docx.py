@@ -53,7 +53,7 @@ def rewrite_profile_section(docx_path: Path, new_texts: list[str], output_path: 
     Args:
         docx_path (Path): Path to the input DOCX file.
         new_texts (list[str]): A list of the new texts to replace the paragraphs
-            between profile and core competencies.
+            between profile and the next heading 1.
         output_path (Path): Path to save the modified DOCX file.
 
     Returns:
@@ -81,13 +81,10 @@ def rewrite_profile_section(docx_path: Path, new_texts: list[str], output_path: 
             paragraph.style.name == "Heading 1"
             and paragraph.text.lower().strip() == "profile"
         ):
-            # Determine the next Heading 1 that marks the end (Core Competencies)
+            # Determine the next Heading 1 that marks the end of the Profile section
             j = None
             for idx, next_paragraph in enumerate(doc.paragraphs[i + 1 :], start=i + 1):
-                if (
-                    next_paragraph.style.name == "Heading 1"
-                    and next_paragraph.text.lower().strip() == "core competencies"
-                ):
+                if next_paragraph.style.name == "Heading 1":
                     j = idx
                     break
             if j is None:
@@ -107,7 +104,7 @@ def rewrite_profile_section(docx_path: Path, new_texts: list[str], output_path: 
                 else None
             )
 
-            # Delete paragraphs between Profile and Core Competencies (exclusive)
+            # Delete paragraphs between Profile and the next Heading 1 (exclusive)
             for idx in range(j - 1, i, -1):
                 p = doc.paragraphs[idx]
                 _remove_paragraph(p)
