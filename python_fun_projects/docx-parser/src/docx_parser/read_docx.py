@@ -124,6 +124,12 @@ def rewrite_profile_section(docx_path: Path, new_texts: list[str], output_path: 
             doc.save(output_path)
             return
 
+    print(
+        "Profile section not found. No changes made. Output file not created.",
+        file=sys.stderr,
+    )
+    return
+
 
 def main():
     """
