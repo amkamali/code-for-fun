@@ -1,0 +1,31 @@
+[project]
+name = "docx-parser"
+version = "0.0.0"
+description = "some basic docx parsing operations"
+authors = [{ name = "Amir Kamali" }]
+requires-python = ">=3.13"
+dependencies = [
+    # Upper bound protects against breaking changes in private API usage
+    # See read_docx.py helper functions for details
+    "python-docx>=1.1.0,<2.0.0"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+
+[tool.hatch.build.targets.wheel]
+# Explicitly tell Hatch which package(s) to include in the wheel.
+# Your importable package is the "docx_parser" package (folder with __init__.py in src/).
+packages = [
+    { include = "docx_parser", from = "src" },
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+]
