@@ -5,7 +5,9 @@ description = "some basic docx parsing operations"
 authors = [{ name = "Amir Kamali" }]
 requires-python = ">=3.13"
 dependencies = [
-    "python-docx>=1.1.0"
+    # Upper bound protects against breaking changes in private API usage
+    # See read_docx.py helper functions for details
+    "python-docx>=1.1.0,<2.0.0"
 ]
 
 [build-system]
